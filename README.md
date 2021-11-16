@@ -1,2 +1,2 @@
 # angular-singalR
-Angular Application with SingalR client with auto reconnect
+Angular Application with SignalR client with auto reconnect
