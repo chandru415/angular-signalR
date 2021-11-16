@@ -10,11 +10,17 @@ export class SubscriberService {
   private readonly hubURL = `${environment.signalR_URL}/chart`;
   private hubConnection!: SignalR.HubConnection;
 
+  /** For load balancer settings */
+  private srHubOptions: SignalR.IHttpConnectionOptions = {
+    skipNegotiation: true,
+    transport: 1
+  }
+
   constructor(private http: HttpClient) {this.startSignalRConnection();}
 
   startSignalRConnection = () => {
     this.hubConnection = new SignalR.HubConnectionBuilder()
-      .withUrl(this.hubURL)
+      .withUrl(this.hubURL, this.srHubOptions)
       .build();
 
     this.hubConnection
