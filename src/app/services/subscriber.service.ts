@@ -21,6 +21,11 @@ export class SubscriberService {
   startSignalRConnection = () => {
     this.hubConnection = new SignalR.HubConnectionBuilder()
       .withUrl(this.hubURL, this.srHubOptions)
+      .withAutomaticReconnect({
+        nextRetryDelayInMilliseconds: retryContext => {
+          return retryContext.previousRetryCount <= 10 ? Math.random() * 10000 : null
+        }
+      })
       .build();
 
     this.hubConnection
