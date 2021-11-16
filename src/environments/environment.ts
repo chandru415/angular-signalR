@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  isLocal: true,
+  signalR_URL: `https://localhost:44382` // Refer project - https://github.com/chandru415/SingalR-CQRS-MediatR 
 };
 
 /*
